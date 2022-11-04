@@ -2,7 +2,8 @@ import { View,StyleSheet, Image } from 'react-native'
 import React from 'react'
 import { NativeBaseProvider, Box, Button, Switch, VStack, TextArea,Heading, Text, Input, Icon,Pressable,HStack,ScrollView } from "native-base";
 import AddStudentDetails from '../components/AddStudentDetails';
-
+import { openDatabase } from 'react-native-sqlite-storage';
+var db = openDatabase({ name: 'UserDatabase.db' });
 
 export default function StudentDetails({navigation}){
     return(
