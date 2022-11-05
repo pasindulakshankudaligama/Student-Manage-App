@@ -1,10 +1,30 @@
 import { View,StyleSheet } from 'react-native'
 import React,{useState} from 'react'
 import { NativeBaseProvider, Box, Button, Switch, VStack, TextArea,Heading, Text, Input, HStack } from "native-base";
-
+import { openDatabase } from 'react-native-sqlite-storage';
+var db = openDatabase({ name: 'UserDatabase.db' });
 export default function Login({navigation}) {
   let [email,setEmail] = useState('');
   let [password,setPassword] = useState('');
+
+  let searchUser = () => {
+    db.transaction((tx) => {
+      tx.executeSql(
+        'SELECT * FROM table_user where email = ? , password =?',
+        [email,password],
+        (tx, results) => {
+          var len = results.rows.length;
+          console.log('len', len);
+          if (len > 0) {
+            
+          } else {
+            alert('No user found');
+          }
+        }
+      );
+    });
+  };
+
 
 let login_user=()=>{
   if (!email) {
@@ -15,6 +35,7 @@ let login_user=()=>{
     alert('Please fill password');
     return;
   }
+  searchUser();
   navigation.navigate('Root');
 }
   return (

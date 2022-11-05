@@ -94,28 +94,28 @@ export default function StudentDetails({navigation}){
       );
     });
 
-    // db.transaction(function (tx) {
-    //   tx.executeSql(
-    //     'INSERT INTO table_education (qualification, instituteName, startedDate, endDate, grade, student_id) VALUES (?,?,?,?,?,?)',
-    //     [qualification, instituteName, startedDate, endDate, grade, 1],
-    //     (tx, results) => {
-    //       console.log('Results', results.rowsAffected);
-    //       if (results.rowsAffected > 0) {
-    //         Alert.alert(
-    //           'Success',
-    //           'You are Student Successfully Added',
-    //           [
-    //             {
-    //               text: 'Ok',
-    //               // onPress: () => navigation.navigate('Login'),
-    //             },
-    //           ],
-    //           { cancelable: false }
-    //         );
-    //       } else alert('Failed');
-    //     }
-    //   );
-    // });
+    db.transaction(function (tx) {
+      tx.executeSql(
+        'INSERT INTO table_education (qualification, instituteName, startedDate, endDate, grade, student_id) VALUES (?,?,?,?,?,?)',
+        [qualification, instituteName, startedDate, endDate, grade, 1],
+        (tx, results) => {
+          console.log('Results', results.rowsAffected);
+          if (results.rowsAffected > 0) {
+            Alert.alert(
+              'Success',
+              'You are Student Successfully Added',
+              [
+                {
+                  text: 'Ok',
+                  // onPress: () => navigation.navigate('Login'),
+                },
+              ],
+              { cancelable: false }
+            );
+          } else alert('Failed');
+        }
+      );
+    });
   }
     return(
 <NativeBaseProvider>
