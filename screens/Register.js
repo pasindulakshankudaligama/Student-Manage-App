@@ -1,4 +1,4 @@
-import { View,StyleSheet, Image } from 'react-native'
+import { View,StyleSheet } from 'react-native'
 import React, { useState } from 'react'
 import { NativeBaseProvider, Box, Button, Switch, VStack, TextArea,Heading, Text, Input, Icon,Pressable,HStack } from "native-base";
 import { openDatabase } from 'react-native-sqlite-storage';
@@ -6,7 +6,7 @@ var db = openDatabase({ name: 'UserDatabase.db' });
 
 export default function Register({navigation}) {
  
-   let [name, setName] = useState('');
+  let [name, setName] = useState('');
   let [email,setEmail] = useState('');
   let [password,setPassword] = useState('');
 
@@ -24,6 +24,7 @@ export default function Register({navigation}) {
       return;
     }
     db.transaction(function (tx) {
+      console.log(tx);
       tx.executeSql(
         'INSERT INTO table_user (name, email, password) VALUES (?,?,?)',
         [name, email, password],

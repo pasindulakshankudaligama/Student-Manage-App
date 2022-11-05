@@ -9,6 +9,7 @@ import Register from './screens/Register';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Home from './screens/Home';
 import StudentDetails from './screens/StudentDetails';
+
  
  const Stack = createStackNavigator();
  const Tab = createBottomTabNavigator();
